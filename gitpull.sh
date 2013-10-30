@@ -6,4 +6,6 @@ cd ~/School/CSCI/CS3530
 git pull origin master
 cd ~/School/CSCI/CS3310
 git pull origin master
+cd ~/Scripts
+git pull origin master
 exit 0
