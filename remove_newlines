@@ -1,0 +1,1 @@
+perl -ne 'chomp; s/(^\s+|\s+$)//g; print "$_ " if ( $_ ne "" );' doc

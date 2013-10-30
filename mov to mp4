@@ -1,0 +1,7 @@
+video could be better qualitly - but for internet good!
+
+ffmpeg -i 100_3591.mov -vcodec mpeg4 -acodec libfaac -ac 1 -ar 16000 -r 13 -threads 4 -ab 32000 1.mp4
+
+better 
+
+ffmpeg -i 100_3591.mov -vcodec mpeg4 -acodec libfaac -ac 1 -ar 16000 -r 34 -threads 4 -ab 32000 1.mp4

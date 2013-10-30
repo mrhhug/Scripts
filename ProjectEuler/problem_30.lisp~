@@ -1,0 +1,8 @@
+(loop for i from 1000 to 10000 do 
+	(defparameter *string* (string (write-to-string i)))
+	(defparameter *total* 0)
+	(defparameter *running* (length *string*))
+	(loop repeat *running* do (incf *total* (expt (parse-integer (subseq *string* (- *running* 1)  *running*)) 4)) (setq *running* (1- *running*)))
+	;(print *string*)
+	(if (= i *total*) (print i))
+	)

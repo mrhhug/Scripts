@@ -1,0 +1,71 @@
+****************cinerella
+******************20.7 Rendering videos for the internet 
+
+If you want to encode a video in order to put it on the internet, we recommend to render it as a Quicktime4linux file, and then encode that file in MPEG4 of FLV formats. The Quicktime4linux file rendered from Cinelerra must have the following properties: 
+Audio option Two Complements 16bits (PCM) 
+Video option DV
+
+************************20.7.1 Encoding a video in MPEG4 format for the internet 
+
+To get the best quality, you should encode your Quicktime4linux file with mencoder in two passes. 
+
+First pass: 
+mencoder input.mov -ovc xvid -xvidencopts bitrate=600:pass=1 -vf scale=720:480 -oac mp3lame -lameopts abr:br=64 -o output.avi
+
+Second pass: 
+mencoder input.mov -ovc xvid -xvidencopts bitrate=600:pass=2 -vf scale=720:480 -oac mp3lame -lameopts abr:br=64 -o output.avi
+
+Do not forget to change the output size of the video, set with the `-vf scale=' option.
+
+Here are some other command lines. They give output video files whose weight is around 13 Mb for 3 minutes.
+First pass: 
+mencoder -oac pcm -sws 2 -vf scale=${width}:${height},hqdn3d=2:1:2 \
+-ovc lavc -lavcopts vcodec=mpeg4:vbitrate=${video_bitrate}:vlelim=-4:\
+vcelim=7:lumi_mask=0.05:dark_mask=0.01:scplx_mask=0.3:naq:v4mv:mbd=2:\
+trell:cmp=3:subcmp=3:mbcmp=3:aspect=4/3:sc_threshold=1000000000:\
+vmax_b_frames=2:vb_strategy=1:dia=3:predia=3:cbp:mv0:preme=2:\
+last_pred=3:vpass=1:cgop -ofps 25 -of avi movie.mov -o /dev/null\
+-ffourcc DIVX
+
+Second pass: 
+mencoder -srate 32000 -oac mp3lame -lameopts cbr:br=${audio_bitrate}:\
+aq=0 -sws 2 -vf scale=${width}:${height},hqdn3d=2:1:2 -ovc lavc\
+-lavcopts vcodec=mpeg4:vbitrate=${video_bitrate}:vlelim=-4:vcelim=7:\
+lumi_mask=0.05:dark_mask=0.01:scplx_mask=0.3:naq:v4mv:mbd=2:trell:\
+cmp=3:subcmp=3:mbcmp=3:aspect=4/3:sc_threshold=1000000000:\
+vmax_b_frames=2:dia=3:predia=3:cbp:mv0:preme=2:last_pred=3:vpass=3:\
+cgop -ofps 25 -of avi movie.mov -o movie.avi -ffourcc DIVX
+
+You probably have to adapt those command lines if your material is noisy; have a look at mencoder's pre-processing filters. The *_mask parameters are really important when encoding at low bitrate.
+
+If you want your video file to be displayed properly on a well know media player which runs on Windows you should be aware that: 
+the aspect ratio information contained in the AVI header will not be taken into account by that player. That is why you must scale the image to the right aspect ratio. Width and height must be multiples of 16. Those are the recommended resolutions for 4/3 PAL material: 384:288, 448:336, 512:384 or 704:528. 
+the media player running on Windows will loose A/V sync if a VBR audio bitrate is used instead of CBR. 
+the `-ffourcc' parameter is needed for the video codec to be recognized as Divx. 
+20.7.2 Encoding a video in FLV format for the internet 
+
+****************************FLV files (FLash Video) weight is very small and the only thing needed to play those files is an internet browser with flash plugin version 7 or higher installed. That format is really useful when one wants to share a video with a wide audience over the internet. 
+
+First pass: 
+ffmpeg -i movie.mov -b 900k -s 720x480 -aspect 4:3 -pass 1 -ar 11025 movie.flv
+
+#
+#Michael - yeah go ahead and overwrite on 2nd pass
+#
+
+Second pass: 
+ffmpeg -i movie.mov -b 900k -s 720x480 -aspect 4:3 -pass 2 -ar 11025 movie.flv
+
+Pay attention to the output file extension. Ffmpeg uses it to determine the output format. The audio sampling frequency to use is 22050 and the `-ar' parameter must be used for the video to be properly encoded. Ffmpeg does not write metadata information in the flv file. The duration has to be written in the metadata information in order for some flash players to display a progress bar. FLVTool2 (http://www.inlet-media.de/flvtool2) can be used to insert that information: 
+cat input_file.flv | flvtool2 -U stdin output_file.flv
+
+There are a number of options for embedding the flv file in a web page. You can use ming or flv2swf to create an swf file. 
+http://klaus.geekserver.net/flash/streaming.html has detailed instructions for ming and http://search.cpan.org/~clotho/FLV-Info-0.17/bin/flv2swf can be installed with cpan> install FLV::ToSWF. Or you can use the Creative Commons Non-Commercial licenced JW FLV Player http://www.jeroenwijering.com/?item=JW_FLV_Player, or the Apache Licenced FlowPlayer http://flowplayer.org. Both of these allow you to use the flv as created above, and have controls for stopping and playing the movie etc
+
+mencoder -oac pcm -sws 2 -vf scale=${width}:${height},hqdn3d=2:1:2 \
+-ovc lavc -lavcopts vcodec=mpeg4:vbitrate=${video_bitrate}:vlelim=-4:\
+vcelim=7:lumi_mask=0.05:dark_mask=0.01:scplx_mask=0.3:naq:v4mv:mbd=2:\
+trell:cmp=3:subcmp=3:mbcmp=3:aspect=4/3:sc_threshold=1000000000:\
+vmax_b_frames=2:vb_strategy=1:dia=3:predia=3:cbp:mv0:preme=2:\
+last_pred=3:vpass=1:cgop -ofps 25 -of avi movie.mov -o /dev/null\
+-ffourcc DIVX

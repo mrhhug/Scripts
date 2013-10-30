@@ -1,0 +1,3 @@
+ffmpeg -i input.mp4 -acodec mp2 output.mp4
+
+ffmpeg -i input.avi -vcodec msmpeg4v2 output.avi

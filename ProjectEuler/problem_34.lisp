@@ -1,0 +1,14 @@
+(defun factorial (n)
+  (if (< n 2)
+      1
+    (* n (factorial (- n 1)))))
+;(print (factorial 10))
+(loop for i from 3 to 100000 do 
+	(defparameter *string* (string (write-to-string i)))
+	(defparameter *total* 0)
+	(defparameter *running* (length *string*))
+	(loop repeat *running* do (incf *total* (factorial (parse-integer (subseq *string* (- *running* 1)  *running*)))) (setq *running* (1- *running*)))
+	;(print *string*)
+	(if (= i *total*) (print i))
+); 40730
+; add the printed numbers

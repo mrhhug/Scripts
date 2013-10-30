@@ -1,0 +1,11 @@
+#!/bin/bash
+for f in *.flv ### mp4
+      do 
+      ffmpeg -i "$f" -acodec libmp3lame -ab 128k "${f%.flv}.mp3" #mp4
+done
+#rm ./*.flv
+for f in *.mp4 ### mp4
+      do 
+      ffmpeg -i "$f" -acodec libmp3lame -ab 128k "${f%.mp4}.mp3" #mp4
+done
+#rm ./*.mp4

@@ -1,0 +1,15 @@
+You can try cat.
+
+Code:
+cat movie1.avi movie2.avi > movie_new.avi
+Then you have to use mencoder to rebuild the index or else you will end up with garbage.
+Code:
+mencoder -forceidx -oac copy -ovc copy movie_new.avi -o movie.avi
+For mpg, might work for avi too
+Code:
+mencoder -oac copy -ovc copy movie1 movie2 -o movie.mpg
+    	
+
+
+
+**********PiTiVi = best*******************

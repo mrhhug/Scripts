@@ -1,0 +1,3 @@
+seems like this maxes out but its gets pretty tight for a avi
+
+ mencoder movie.avi -ovc xvid -oac mp3lame -xvidencopts bitrate=150000 -o fixed.avi

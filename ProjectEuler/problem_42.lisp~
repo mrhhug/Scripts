@@ -1,0 +1,13 @@
+(defparameter *running* (* 15 26)) ;;;;;;;i am guessing there are going to be max 15 "Z"s.... in this set. really just a number selected by observation of human random.
+(defparameter *concanating* "")
+(defun count-sub (str pat)
+  (loop with z = 0 with s = 0 while s do
+	(when (setf s (search pat str :start2 s))
+	  (incf z) (incf s (length pat)))
+	finally (return z)))
+(loop for i from 1 to 11 do
+  (defparameter J (* (/ 1 2) i (+ 1 i)))
+  (setf *concanating* (concatenate 'string *concanating* (string (write-to-string J)) " ")) 
+)
+(PRINT *concanating*)
+(PRINT (count-sub *concanating* "66"))

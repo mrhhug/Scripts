@@ -1,0 +1,23 @@
+(defun isprime (x)
+  (if (< x 2)
+	  (return-from isprime nil)
+	(dotimes (i (+ (ceiling (sqrt x)) 1))
+	  (if (> i 1)
+		  (if (< i x)
+			  (if (equal (mod x i) 0)
+				  (return-from isprime nil))))))
+  (return-from isprime t))
+(defparameter *tempprimecount* 0)
+(defparameter *highest* 0)
+(defparameter *highestnumbs* "")
+  (loop for a from -1001 to 1001 do
+    (loop for b from -1001 to 1001 do
+    (defparameter *tempprimecount* 0)
+      (loop for n from 0 to 10000000 do
+      (if (isprime (+ (* n n) (* a n) b)) (incf *tempprimecount*) (setf n 10000001))
+      )
+    (if (> *tempprimecount* *highest*) (progn (setf *highest* *tempprimecount*) (setf *highestnumbs* (concatenate 'string (write-to-string a) " " (write-to-string b)))))
+    )
+  )
+(print *highestnumbs*)
+(print *highest*)

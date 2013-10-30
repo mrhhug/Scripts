@@ -1,0 +1,3 @@
+perl -e "s/ORIGSTRING/NEWSTRING/g;" -pi.save $(find PATH/TO/FILE -type f)
+## to not use a backups
+##perl -e "s/ORIGSTRING/NEWSTRING/g;" -pi $(find path/to/DIRECTORY -type f) replace.txt

@@ -1,0 +1,8 @@
+mencoder -vf harddup -demuxer lavf -oac pcm -ovc lavc -lavcopts vcodec=mjpeg:vhq:vbitrate=6000 -noskip -mc 0 -o newvideo.avi originalvideo.avi
+
+
+for my project :
+mencoder -vf scale=636:360 -demuxer lavf -oac pcm -ovc lavc -lavcopts vcodec=mjpeg:vhq:vbitrate=6000 -noskip -mc 0 -o newvideo.avi originalvideo.avi
+
+
+

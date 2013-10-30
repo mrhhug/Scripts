@@ -1,0 +1,22 @@
+#!/bin/bash
+formattedfilenames=$output.txt
+#start with an unformated text file currently USE THE NEXT LINE AS YOUR INPUT ----batch.txt
+tr ' ' '+' <batch.txt> $formattedfilenames
+# parse file, youtube search, awk results
+while read line; do
+    lynx -dump http://www.youtube.com/results?search_query="$line" > aids.txt
+    awk '$0 ~ var{print;exit}' var=$http://www.youtube.com/watch?* tempphile.txt >> list.txt
+done < "$formattedfilenames"
+#clean
+rm tempphile.txt
+#perfect the file
+cut -b 1-6 --complement list.txt > ready.txt
+#clean
+rm list.txt
+#loop the get_flash_videos
+while read line; do
+	youtube-dl -o "/home/michael/Desktop/newmusic/%(title)s.%(ext)s" --extract-audio --audio-format=mp3 "$line"
+done < ready.txt
+rm ready.txt
+
+

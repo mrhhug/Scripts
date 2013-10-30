@@ -1,0 +1,17 @@
+#!/bin/bash
+##do the conversion
+for f in ./*.mp4
+	do 
+		ffmpeg -i "$f" -acodec libmp3lame -ab 128k "${f%.mp4}.mp3"
+done
+##remove the mp4
+rm ./*.mp4
+##format better than get_flash_videos
+for i in ./*.mp3 ; do
+        if [[ `echo "$i" | grep -r '_' | grep -v 'm3u'` ]]
+        then
+               mv "$i" "`echo "$i" | sed 's/_/\ /g' | perl -p -e 's/(\\w+)/\\u\\L$1/g;' | sed 's/Mp3/mp3/g'`";
+        #move comment above to just echo#        echo "`echo "$i" | sed 's/_/\ /g' | perl -p -e 's/(\\w+)/\\u\\L$1/g;' | sed 's/Mp3/mp3/g'`";
+        fi
+done
+#TODO tag the mp3s properly for the kids. 

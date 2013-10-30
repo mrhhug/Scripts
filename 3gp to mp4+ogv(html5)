@@ -1,0 +1,16 @@
+ffmpeg -i ./INPUTINPUTINPUT.3gp -r 29.97 -vcodec libxvid -b 700k -acodec libfaac -ab 128k -bufsize 4M -qmax 51 -mbd 2 -cmp 2 -subcmp 2 -ar 44100 -g 300 -s 320x240 -aspect 4:3 -ac 2 -f mp4 -y OUTPUTOUTPUTOUTPUT.mp4 && USE OGGCONVERT
+
+
+the GUI ogg convert is way longer but better
+ffmpeg -i sample.avi -strict experimental -acodec vorbis -vcodec libtheora sample.ogv
+
+ffmpeg -i sample.avi sample.ogv -strict experimental -acodec vorbis -vcodec theora -s 640x480 -f ogg  
+
+ffmpeg -i sample.avi samdple.ogv -strict experimental -acodec vp8 -vcodec theora -s 640x480
+
+
+<video width="560" height="340" poster="amanda.jpg" controls preload="none">
+<source src="path/to/myvideo.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+<source src="path/to/myvideo.ogg" type='video/ogg; codecs="theora, vorbis"'>
+INSERT OLD FLV
+</video>
