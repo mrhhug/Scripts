@@ -8,4 +8,6 @@ cd ~/School/CSCI/CS3310
 git pull origin master
 cd ~/Scripts
 git pull origin master
+cd /srv/http
+git pull origin master
 exit 0

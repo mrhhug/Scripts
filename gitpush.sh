@@ -18,3 +18,7 @@ cd ~/Scripts
 git add -A
 git commit -m 'commit from script'
 git push origin master
+cd /srv/http
+git add -A
+git commit -m 'commit from script'
+git push origin master
