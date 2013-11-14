@@ -1,3 +1,4 @@
+#!/bin/bash
 for i in {'ACM-ICPC','CS4520','CS3530','CS3310'}
 do
 	cd $HOME/School/CSCI/$i
