@@ -345,7 +345,11 @@ public class Derivative
         }
         return str;
     }
-    
+    //find points of derivative from supplied 3d array
+    public static void derivative(double[][] array)
+    {
+        
+    }
     public static void print2dArray(double[][] array)
     {
         for (int i =0 ; i<array.length;i++)
@@ -355,31 +359,32 @@ public class Derivative
     }
     public static void doit()
     {
-        String function = "5x^3+6x^2";
-        int bounds =1;
-        int deltaX = 100; ///must be at least 1
+        //String function = "5x^3+6x^2";
+        String function = "x^2";
+        int bounds =6;
+        int deltaX = 10; ///must be at least 1
         int deltacount =0;
-        double[][] derivative = new double[deltaX*2+1][2];
+        double[][] datapoints = new double[bounds*deltaX*2+1][2];
         //System.out.println("erererer");
         //System.out.println(suboutX("4x+5","2"));
         //System.out.println(evaluate("4+5"));
         for(int i=bounds*deltaX;i>0;i--)
         {
             //System.out.print("-"+(double)i/deltaX+" ");
-            derivative[deltacount][0]=(double)i/deltaX*-1;
+            datapoints[deltacount][0]=(double)i/deltaX*-1;
             //System.out.println(evaluate(suboutX(function,"_"+(double)i/deltaX)));
-            derivative[deltacount][1]=evaluate(suboutX(function,"_"+(double)i/deltaX));
+            datapoints[deltacount][1]=evaluate(suboutX(function,"_"+(double)i/deltaX));
             deltacount++;
         }
         for(int i=0;i<=bounds*deltaX;i++)
         {
             //System.out.print((double)i/deltaX+" ");
-            derivative[deltacount][0]=(double)i/deltaX;
+            datapoints[deltacount][0]=(double)i/deltaX;
             //System.out.println(evaluate(suboutX(function,Double.toString((double)i/deltaX))));
-            derivative[deltacount][1]=evaluate(suboutX(function,Double.toString((double)i/deltaX)));
+            datapoints[deltacount][1]=evaluate(suboutX(function,Double.toString((double)i/deltaX)));
             deltacount++;
         }
-        print2dArray(derivative);
+        print2dArray(datapoints);
         
     }
     public static void main(String[] args) throws FileNotFoundException
