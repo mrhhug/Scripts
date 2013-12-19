@@ -1,4 +1,4 @@
-/* Written by Michael Hug : mrhhug 
+/* Written by Michael : mrhhug 
  * tested on : 
  *	Manufacturer: ASUSTeK Computer Inc.        
  *	Product Name: K60IJ  */
@@ -9,7 +9,7 @@
 #include <curses.h>
 #include <stdlib.h>
 #include <unistd.h>
-int maxbright; //this gets used over and over and does not change
+int maxbright; //this gets used over and over and does not change, set in main
 
 int read_max_bright()
 {
@@ -63,34 +63,34 @@ void write_brightness(int brightness)
 
 void draw()
 {
-	double curbright = read_cur_bright();
-	double mbright = maxbright;
-	erase();
-	move(0,0);
+	double curbright = read_cur_bright(); //cast to double for division
+	double mbright = maxbright; //cast to double for divivsion
+	erase(); // clear window, needed to remove
+	move(0,0); // instructions
 	printw("Use [up arrow,A] or [down arrow,B] to adjust brightness, q to quit\n");
-	move(1,0);
-	int i;
+	move(1,0); // top of bar
+	int i; // gcc....
 	for(i=0;i<102;i++)
 	{
 		printw("-");
 	}
-	move(3,0);
+	move(3,0); // bottome of bar
 	for(i=0;i<102;i++)
 	{
 		printw("-");
 	}
-	move(2,0);
+	move(2,0); // left edge
 	printw("|");
-	move(2,101);
+	move(2,101); // right edge
 	printw("|");
 	
 	move(2,1);
-	for(i=0;i<curbright/mbright*100;i++)
+	for(i=0;i<curbright/mbright*100;i++) // loop to write progress style #s
 	{
 		printw("#");
 	}
 	
-	move(4,0);
+	move(4,0); // actual numbers, for general reference
 	printw("%.0f of %d : %f %%",curbright,maxbright,curbright/mbright*100);
 	refresh();
 }
@@ -98,18 +98,11 @@ void draw()
 int main(void)
 {
 	maxbright = read_max_bright();
-	///remember to reset
-	if(geteuid() == 0) //only root can change backlight
+	if(geteuid() == 0) // only root can change backlight
 	{
-		//WINDOW * mainwin = initscr(); // Start curses mode
 		initscr(); // Start curses mode
-		
-		
-	    //refresh();
 		noecho(); // do not print input to screen
-		int cha; // what we will use to catch input
-		
-		
+		int cha; // what we will use to catch input	
 		int newbrightness; // what we will use to set brightness
 		
 		while (cha != 'q') //exit on q
