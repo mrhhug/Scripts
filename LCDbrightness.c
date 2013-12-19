@@ -1,4 +1,4 @@
-/* Written by Michael : mrhhug 
+/* Written by Michael Hug: mrhhug is my username on gmail
  * tested on : 
  *	Manufacturer: ASUSTeK Computer Inc.        
  *	Product Name: K60IJ  */
@@ -9,11 +9,12 @@
 #include <curses.h>
 #include <stdlib.h>
 #include <unistd.h>
-int maxbright; //this gets used over and over and does not change, set in main
 
 //change this to match your system
 char mbrightfile[] = "/sys/class/backlight/intel_backlight/max_brightness";
 char curbrightfile[] = "/sys/class/backlight/intel_backlight/brightness";
+
+int maxbright; //this gets used over and over and does not change, set in main
 
 int read_max_bright()
 {
@@ -24,8 +25,8 @@ int read_max_bright()
 		printf("Error opening %s\n",mbrightfile);
 		exit(1);
 	}
-	int max_bright; //not sure if c will let you return inline
-	fscanf (maxBright, "%d", &max_bright); //doing the actual scan
+	int max_bright; // not sure if c will let you return inline
+	fscanf (maxBright, "%d", &max_bright); // doing the actual scan
 	fclose(maxBright); // close the file
 	return max_bright;
 }
@@ -39,10 +40,9 @@ int read_cur_bright()
 		printf("Error opening %s\n",curbrightfile);
 		exit(1);
 	}
-	int cur_bright; //not sure if c will let you return inline
-	fscanf (curBright, "%d", &cur_bright); //doing the actual scan
+	int cur_bright; // not sure if c will let you return inline
+	fscanf (curBright, "%d", &cur_bright); // doing the actual scan
 	fclose(curBright); // close the file
-	//printw("%d ",cur_bright); //print for testing.
 	return cur_bright;
 }
 
@@ -63,41 +63,34 @@ void draw()
 {
 	double curbright = read_cur_bright(); //cast to double for division
 	double mbright = maxbright; //cast to double for divivsion
-	erase(); // clear window, needed to remove
-	move(0,0); // instructions
-	printw("Use [up arrow,A] or [down arrow,B] to adjust brightness, q to quit\n");
-	move(1,0); // top of bar
-	int i; // gcc....
-	for(i=0;i<102;i++)
+	erase(); // clear window, needed to remove when used decreases brightness
+	mvaddstr(0,0,"Use [up arrow,A] or [down arrow,B] to adjust brightness, q to quit"); // instructions
+	int i; // ....gnu89
+	int j; // ....gnu89
+	for(i =1; i<4 ;i+=2)
 	{
-		printw("-");
+		move(i,0);
+		for(j=0;j<102;j++)
+		{
+			printw("-");
+		}
 	}
-	move(3,0); // bottome of bar
-	for(i=0;i<102;i++)
-	{
-		printw("-");
-	}
-	move(2,0); // left edge
-	printw("|");
-	move(2,101); // right edge
-	printw("|");
-	
+	mvaddstr(2,0,"|"); // left edge
+	mvaddstr(2,101,"|"); // right edge
 	move(2,1);
 	for(i=0;i<curbright/mbright*100;i++) // loop to write progress style #s
 	{
 		printw("#");
 	}
-	
 	move(4,0); // actual numbers, for general reference
 	printw("%.0f of %d : %f %%",curbright,maxbright,curbright/mbright*100);
-	refresh();
 }
 
 int main(void)
 {
-	maxbright = read_max_bright();
 	if(geteuid() == 0) // only root can change backlight
 	{
+		maxbright = read_max_bright();
 		initscr(); // Start curses mode
 		noecho(); // do not print input to screen
 		int cha; // what we will use to catch input	
