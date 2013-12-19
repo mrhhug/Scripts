@@ -11,15 +11,19 @@
 #include <unistd.h>
 int maxbright; //this gets used over and over and does not change, set in main
 
+//change this to match your system
+char mbrightfile[] = "/sys/class/backlight/intel_backlight/max_brightness";
+char curbrightfile[] = "/sys/class/backlight/intel_backlight/brightness";
+
 int read_max_bright()
 {
 	//adjust this to your actual file
-	char filename[] = "/sys/devices/pci0000:00/0000:00:02.0/drm/card0/card0-LVDS-1/intel_backlight/max_brightness";
-	FILE* maxBright = fopen (filename, "r"); //fopen filename
+	
+	FILE* maxBright = fopen (mbrightfile, "r"); //fopen filename
 	if (maxBright == NULL) // check for weird errors
 	{
 		endwin(); // end cureses mode, return the terminal to regular
-		printf("Error opening %s\n",filename);
+		printf("Error opening %s\n",mbrightfile);
 		exit(1);
 	}
 	int max_bright; //not sure if c will let you return inline
@@ -30,13 +34,11 @@ int read_max_bright()
 
 int read_cur_bright()
 {
-	//adjust this to your actual file
-	char filename[] = "/sys/devices/pci0000:00/0000:00:02.0/drm/card0/card0-LVDS-1/intel_backlight/brightness";
-	FILE* curBright = fopen (filename, "r"); //fopen filename
+	FILE* curBright = fopen (curbrightfile, "r"); //fopen filename
 	if (curBright == NULL) // check for weird errors
 	{
 		endwin(); // end cureses mode, return the terminal to regular
-		printf("Error opening %s\n",filename);
+		printf("Error opening %s\n",curbrightfile);
 		exit(1);
 	}
 	int cur_bright; //not sure if c will let you return inline
@@ -48,13 +50,11 @@ int read_cur_bright()
 
 void write_brightness(int brightness)
 {
-	//adjust this to your actual file
-	char filename[] = "/sys/devices/pci0000:00/0000:00:02.0/drm/card0/card0-LVDS-1/intel_backlight/brightness";
-	FILE *f = fopen(filename, "w");
+	FILE *f = fopen(curbrightfile, "w");
 	if (f == NULL) // check for weird errors
 	{
 		endwin(); // end cureses mode, return the terminal to regular
-		printf("Error opening %s\n",filename);
+		printf("Error opening %s\n",curbrightfile);
 		exit(1);
 	}
 	fprintf(f, "%d", brightness); // the actual write
