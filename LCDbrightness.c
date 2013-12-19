@@ -17,8 +17,6 @@ char curbrightfile[] = "/sys/class/backlight/intel_backlight/brightness";
 
 int read_max_bright()
 {
-	//adjust this to your actual file
-	
 	FILE* maxBright = fopen (mbrightfile, "r"); //fopen filename
 	if (maxBright == NULL) // check for weird errors
 	{
