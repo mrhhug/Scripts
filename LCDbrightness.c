@@ -102,7 +102,7 @@ int main(void)
 			cha = getch(); //waits for keyboard input
 			if (cha == 65) // up arrow actually sends a set of 3, only looking for last
 			{
-				newbrightness = read_cur_bright()*1.01; // integer multiplication of 1.01%
+				newbrightness = read_cur_bright()*1.01; // integer multiplication of 101%
 				if(newbrightness>maxbright) // do no go above max
 				{
 					newbrightness=maxbright; // had the multiplacation gone above max, set new brightness to max
@@ -111,7 +111,7 @@ int main(void)
 			}
 			if (cha == 66) // down arrow actually sends a set of 3, only looking for last
 			{
-				newbrightness = read_cur_bright()*0.99; // integer multiplication of 0.99%
+				newbrightness = read_cur_bright()*0.99; // integer multiplication of 99%
 				if(newbrightness>1) // do not go below 1
 				{
 					write_brightness(newbrightness); // write to file

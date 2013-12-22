@@ -182,6 +182,7 @@ void shunt_op(struct op_s *op)
 
 int main(int argc, char *argv[])
 {
+	printf("%s, array\n", argv[0]);
 	char *expr;
 	char *tstart=NULL;
 	struct op_s startop={'X', 0, ASSOC_NONE, 0, NULL};	/* Dummy operator to mark start */
@@ -245,7 +246,10 @@ int main(int argc, char *argv[])
 	}
 	printf("%d\n", numstack[0]);
 
-	return EXIT_SUCCESS;
+	//return EXIT_SUCCESS;
 }
 
-
+int start()
+{
+	return EXIT_SUCCESS;
+}
