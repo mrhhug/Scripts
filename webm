@@ -1,0 +1,9 @@
+ffmpeg -y -i sample.avi -threads 8 -f webm -aspect 16:9 -vcodec libvpx -deinterlace -g 120 -level 216 -profile 0 -qmax 42 -qmin 10 -rc_buf_aggressivity 0.95 -vb 2M -acodec libvorbis -aq 90 -ac 2 sample.webm
+
+ffmpeg -y -i sample.avi -threads 8 -f webm -vcodec libvpx -deinterlace -g 120 -level 216 -profile 0 -qmax 42 -qmin 10 -rc_buf_aggressivity 0.95 -vb 2M -acodec libvorbis -aq 90 -ac 2 sample.webm
+
+ffmpeg -y -threads 8 -f webm -aspect 16:9 -vcodec libvpx -i sample.avi -deinterlace -g 120 -level 216 -profile 0 -qmax 42 -qmin 10 -rc_buf_aggressivity 0.95 -vb 2M -acodec libvorbis -aq 90 -ac 2 output.webm 
+
+ffmpeg -i output.mp4 -y -an -v 1 -vcodec libvpx libvpx -b 500k -bt 175k -refs 1 -deblockalpha 0 -deblockbeta 0 -subq 1 -bf 0 -level 30 -g 300 -keyint_min 30 -sc_threshold 40 -rc_eq 'blurCplx^(1-qComp)' -qcomp 0.7 -qmax 51 -qdiff 4 -i_qfactor 0.71428572 -maxrate 768k -bufsize 2M -cmp 1 -s 640x480 -f webm -pass 1 /dev/null
+
+ffmpeg -i output.mp4 sally.webm

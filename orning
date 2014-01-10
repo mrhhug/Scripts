@@ -1,0 +1,25 @@
+#!/bin/bash
+#this script went online and crontabbing to sucsessfully archive my receipts in photograph on home servwer and on gmail at 12noon november 11th, every receipt i take will be archived from now on. Currently working on the databaseing and pie chart making portion of this software.
+#stay posted for more mrhhug@gmail.com
+D=$(date +%d%b%Y%a%H%M)
+echo Made by Michael Hug - script runs the following apps: fetchmail procmail munpack jpeginfo exiftran mogrify tesseract + cleans
+fetchmail
+ if [ "$?" = "0" ]; then
+echo "You gotst mail"
+/usr/bin/munpack -C /var/mail /var/mail/server
+mv /var/mail/*.jpg /var/mail/working.jpg
+jpeginfo -l /var/mail/working.jpg | awk ' {if ($1<$3)
+  print "Scanned in portrait - u cool"
+  else print "Scanned in landscape - ill fix, exit status " (system("/usr/bin/exiftran" " -9" " -i" " /var/mail/working.jpg"))}'
+/usr/bin/mogrify -format tif /var/mail/working.jpg
+#/usr/bin/mogrify -colors 2 /var/mail/working.tif
+/usr/local/bin/tesseract /var/mail/working.tif /var/mail/working
+#rm /var/mail/working.jpg
+rm /var/mail/working.tif
+mv /var/mail/working.txt /var/mail/txts/$D.txt
+mv /var/mail/working.jpg /var/mail/jpgs/$D.jpg
+rm -f /var/mail/*.desc
+rm /var/mail/server
+echo Your file is named: $D
+ else echo "You have no mail. At $D"
+ fi

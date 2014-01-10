@@ -1,0 +1,27 @@
+OLVED: my hard drive was slowly failing, confirmed this using SMART testing. see the fourth post for instructions on testing a drive with smartctl.
+
+
+ i reboot my computer this evening and it suddenly took 10 minutes to boot. i tested:
+ sudo hdparm -tT /dev/sda
+
+ /dev/sda:
+ Timing cached reads: 1418 MB in 2.00 seconds = 709.07 MB/sec
+ Timing buffered disk reads: 4 MB in 4.43 seconds = 924.11 kB/sec
+
+ clearly something is seriously wrong - my other hard drive in the computer gets 
+ /dev/sdb:
+ Timing cached reads: 1524 MB in 2.00 seconds = 762.42 MB/sec
+ Timing buffered disk reads: 182 MB in 3.01 seconds = 60.45 MB/sec
+ so appears OK
+==================================================================
+
+installed smartmontools (in repositories)
+
+ sudo smartctl -s on /dev/sda (where sda is your drive to test, this turns on SMART monitoring so you can get data about your drives errors/life)
+
+ sudo smartctl -t short /dev/sda (this runs a short test, let it finish for a minute)
+
+ sudo smartctl -a /dev/sda (this spits out a ton of data about the drive)
+
+ you could also just spit out the data on the drive that shows the test results:
+ sudo smartctl -l selftest /dev/sda

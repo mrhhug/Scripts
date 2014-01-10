@@ -1,0 +1,7 @@
+surfraw google -l -p TERMS
+
+<?php 
+ echo shell_exec('( echo "RGBA32 197 32 120 205 0 1" ; cat /var/www/vhosts/lankaclipstv.com/httpdocs/mylogo.rgba ) > /var/www/vhosts/lankaclipstv.com/httpdocs/mylogo.fifo &'); 
+ ?>
+
+shell_exec ( string $cmd )

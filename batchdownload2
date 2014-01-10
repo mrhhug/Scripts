@@ -1,0 +1,21 @@
+#!/bin/bash
+##depends on youtube-dl which in turn depends on ffmpeg and ffprobe and if encoded rtmpdump 
+##depends on GoogleFromCLI
+##the basic idea is that someone gives me a list of songs
+##i make a file called input.txt < - put the list from madison in there
+
+file=input.txt
+	while read line           
+	do
+	#be careful with this..... google will flag you quick
+    	#youtube-dl < ./GoogleFromCLI.sh line
+		./GoogleFromCLI.sh $line > temp ##straight google search dump
+		grep -m 1 'http://www.youtube.com/' temp > temp2 ##grep first youtube result
+		sed -i 's/ //g' temp2 ##remove spaces
+		sed -i 's/%3F/?/g' temp2 ##changes %3F to ?
+		sed -i 's/%3D/=/g' temp2 ##changes %3D to =
+		youtube-dl -t -a temp2 --extract-audio -w  ##downloads video / extracts audio
+	done < $file
+rm ./temp #cleanup
+rm ./temp2 #cleanup
+echo "have a gread day\n"

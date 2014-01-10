@@ -1,0 +1,27 @@
+ #!/bin/bash  
+ #----------  
+ #Imgur Album Downloader v0.1 \ Linux-Ninjas.com
+ #----------  
+ function albumtemp()  
+ {  
+ if [ -e .albumtemp ]; then  
+     rm .albumtemp  
+ fi  
+ }  
+ #Check for url + albumtemp  
+ if [ $# == "" ]; then  
+     echo -n "Url:"  
+     read url  
+     albumtemp  
+ else  
+     url="$1"  
+     albumtemp  
+ fi  
+ #echo "url: $url"  
+ if [ "$url" == "" ]; then  
+     echo "You need to enter a url!"  
+ else  
+     curl $url -o .albumtemp  
+     cat .albumtemp | grep _blank | awk '{print $2}' | cut -d \" -f 2 | xargs wget  
+     albumtemp  
+ fi  

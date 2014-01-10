@@ -1,0 +1,55 @@
+#!/bin/bash
+#written by michael hug
+#dependancy - eyed3
+#define directory here be sure to keep your begining /
+DIR="/home/michael/soundKonverter"
+#DIR=/mnt/500gbstorage/michaelbackup/temp2
+#DIR=/mnt/500gbstorage/michaelbackup/music
+sudo eyeD3 --rename="%A - %t" $DIR[a]*.*
+sudo eyeD3 --rename="%A - %t" $DIR/[b]*.*
+sudo eyeD3 --rename="%A - %t" $DIR/[c]*.*
+sudo eyeD3 --rename="%A - %t" $DIR/[d]*.*
+sudo eyeD3 --rename="%A - %t" $DIR/[e]*.*
+sudo eyeD3 --rename="%A - %t" $DIR/[f]*.*
+sudo eyeD3 --rename="%A - %t" $DIR/[g]*.*
+sudo eyeD3 --rename="%A - %t" $DIR/[h]*.*
+sudo eyeD3 --rename="%A - %t" $DIR/[i]*.*
+sudo eyeD3 --rename="%A - %t" $DIR/[j]*.*
+sudo eyeD3 --rename="%A - %t" $DIR/[k]*.*
+sudo eyeD3 --rename="%A - %t" $DIR/[l]*.*
+sudo eyeD3 --rename="%A - %t" $DIR/[m]*.*
+sudo eyeD3 --rename="%A - %t" $DIR/[n]*.*
+sudo eyeD3 --rename="%A - %t" $DIR/[o]*.*
+sudo eyeD3 --rename="%A - %t" $DIR/[p]*.*
+sudo eyeD3 --rename="%A - %t" $DIR/[q]*.*
+sudo eyeD3 --rename="%A - %t" $DIR/[r]*.*
+sudo eyeD3 --rename="%A - %t" $DIR/[s]*.*
+sudo eyeD3 --rename="%A - %t" $DIR/[t]*.*
+sudo eyeD3 --rename="%A - %t" $DIR/[u]*.*
+sudo eyeD3 --rename="%A - %t" $DIR/[v]*.*
+sudo eyeD3 --rename="%A - %t" $DIR/[w]*.*
+sudo eyeD3 --rename="%A - %t" $DIR/[x]*.*
+sudo eyeD3 --rename="%A - %t" $DIR/[y]*.*
+sudo eyeD3 --rename="%A - %t" $DIR/[z]*.*
+sudo eyeD3 --rename="%A - %t" $DIR/01*.*
+sudo eyeD3 --rename="%A - %t" $DIR/02*.*
+sudo eyeD3 --rename="%A - %t" $DIR/03*.*
+sudo eyeD3 --rename="%A - %t" $DIR/04*.*
+sudo eyeD3 --rename="%A - %t" $DIR/05*.*
+sudo eyeD3 --rename="%A - %t" $DIR/06*.*
+sudo eyeD3 --rename="%A - %t" $DIR/07*.*
+sudo eyeD3 --rename="%A - %t" $DIR/08*.*
+sudo eyeD3 --rename="%A - %t" $DIR/09*.*
+sudo eyeD3 --rename="%A - %t" $DIR/10*.*
+sudo eyeD3 --rename="%A - %t" $DIR/11*.*
+sudo eyeD3 --rename="%A - %t" $DIR/12*.*
+sudo eyeD3 --rename="%A - %t" $DIR/13*.*
+sudo eyeD3 --rename="%A - %t" $DIR/14*.*
+sudo eyeD3 --rename="%A - %t" $DIR/15*.*
+sudo eyeD3 --rename="%A - %t" $DIR/16*.*
+sudo eyeD3 --rename="%A - %t" $DIR/17*.*
+sudo eyeD3 --rename="%A - %t" $DIR/18*.*
+sudo eyeD3 --rename="%A - %t" $DIR/19*.*
+sudo eyeD3 --rename="%A - %t" $DIR/20*.*
+sudo eyeD3 --rename="%A - %t" $DIR/21*.*
+sudo eyeD3 --rename="%A - %t" $DIR/*.*

@@ -1,0 +1,6 @@
+must be done on same PC that amazon sent the ebook
+so go to lappy
+execute
+skindle.exe
+./skindle -i <ebook file> -o <output file>
+now your ebook is DRM free
