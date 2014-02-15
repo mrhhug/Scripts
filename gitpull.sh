@@ -1,5 +1,7 @@
 cd ~/School/CSCI/CS3540
 git pull origin master
+cd ~/School/CSCI/CS3540
+git pull origin master
 cd ~/School/CSCI/CS4150
 git pull origin master
 cd ~/School/CSCI/CS3610
