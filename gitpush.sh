@@ -8,12 +8,6 @@ do
 	git push origin master
 	echo 'End '$i
 done
-cd ~/School/Clubs/ACM/CommonsMenuApp
-echo 'Start CommonsMenuApp'
-git add -A
-git commit -m 'commit from script'
-git push origin master
-echo 'End CommonsMenuApp'
 for i in {$HOME/Scripts,'/srv/http'}
 do
 	cd $i
