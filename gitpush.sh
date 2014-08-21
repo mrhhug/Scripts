@@ -21,7 +21,7 @@ done
 
 for i in {'MATH\ 3332',''} #,'/srv/http'}
 do
-	cd $HOME/School/MATH/$i
+	cd $HOME/School/MATH/
 	echo 'Start '$i
 	git add -A
 	git commit -m 'commit from script'
