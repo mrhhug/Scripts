@@ -28,3 +28,4 @@ done
 	git push origin master
 	echo 'End 'MATH 3332
 #done
+exit 0
