@@ -9,15 +9,15 @@ do
 	echo 'End '$i
 done
 
-for i in {$HOME/Scripts} #,'/srv/http'}
-do
-	cd $i
-	echo 'Start '$i
+#for i in {$HOME/Scripts} #,'/srv/http'}
+#do
+	cd $HOME/Scripts
+	echo 'Start ' Scripts
 	git add -A
 	git commit -m 'commit from script'
 	git push origin master
-	echo 'End '$i
-done
+	echo 'End ' Scripts
+#done
 
 for i in {MATH\ 3332} #,'/srv/http'}
 do
