@@ -19,7 +19,7 @@ do
 	echo 'End '$i
 done
 
-for i in {'MATH\ 3332',''} #,'/srv/http'}
+for i in {'MATH\ 3332'} #,'/srv/http'}
 do
 	cd $HOME/School/MATH/
 	echo 'Start '$i
