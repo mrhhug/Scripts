@@ -8,7 +8,7 @@ do
 	git push origin master
 	echo 'End '$i
 done
-for i in {$HOME/Scripts,'/srv/http'}
+for i in {$HOME/Scripts} #,'/srv/http'}
 do
 	cd $i
 	echo 'Start '$i
