@@ -1,4 +1,4 @@
-cd ~/School/MATH/MATH 3332
+cd ~/School/MATH/MATH\ 3332/
 git pull origin master
 cd ~/Scripts
 git pull origin master

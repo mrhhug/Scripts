@@ -1,5 +1,5 @@
 #!/bin/bash
-for i in {'MATH 3332'}
+for i in {'MATH\ 3332'}
 do
 	cd $HOME/School/MATH/$i
 	echo 'Start '$i
