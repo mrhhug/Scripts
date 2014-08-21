@@ -1,5 +1,5 @@
 #!/bin/bash
-for i in {'CS4500','CS4850'}
+for i in {'CS4500','CS4850','CS4491HPC'}
 do
 	cd $HOME/School/CSCI/$i
 	echo 'Start '$i
