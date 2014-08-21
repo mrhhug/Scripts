@@ -1,7 +1,7 @@
 #!/bin/bash
-for i in {'CS3540','CS4150','CS3610','CS3510'}
+for i in {'MATH 3332'}
 do
-	cd $HOME/School/CSCI/$i
+	cd $HOME/School/MATH/$i
 	echo 'Start '$i
 	git add -A
 	git commit -m 'commit from script'
